@@ -58,9 +58,33 @@ select {
     vertical-align: middle;
 }
 
+#refresh-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#refresh-button:hover {
+    background-color: #483d8b; 
+}
+
+#refresh-button:active {
+    background-color: #372b63; 
+}
+
 footer {
     text-align: center;
     font-size: 18px;
     font-family: monospace;
     color: rgba(0, 0, 0, 0.8);
 }
+
+

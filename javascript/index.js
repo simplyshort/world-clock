@@ -1,4 +1,17 @@
 function updateTime() {
+// Melbourne
+let melbourneElement = document.querySelector("#melbourne");
+if (melbourneElement) {
+    let melbourneDateElement = melbourneElement.querySelector(".date");
+    let melbourneTimeElement = melbourneElement.querySelector(".time");
+    let melbourneTime = moment().tz("Pacific/Melbourne");
+    
+    melbourneDateElement.innerHTML = melbourneTime.format("MMM Do YYYY");
+    melbourneTimeElement.innerHTML = melbourneTime.format(
+    "h:mm:ss [<small>]A[</small>]"
+    );
+}
+
 // Los Angeles
 let losAngelesElement = document.querySelector("#los-angeles");
 if (losAngelesElement) {
@@ -27,6 +40,12 @@ if (parisElement) {
 
 function updateCity(event) {
     let cityTimeZone = event.target.value;
+    let refreshButton = document.querySelector("#refresh-button");
+    if (cityTimeZone === "") {
+        refreshButton.style.display = "none";
+        return;
+    }
+    
     if (cityTimeZone === "current") {
         cityTimeZone = moment.tz.guess();
     }
@@ -43,11 +62,16 @@ function updateCity(event) {
     <div class="time">${cityTime.format("h:mm:ss")}<small>${cityTime.format("A")}</small></div>
     </div>
     `;
+
+    refreshButton.style.display = "block";   
+    refreshButton.addEventListener("click", function() {
+    location.reload();
+    }
+);
 }
 
 updateTime();
 setInterval(updateTime, 1000);
-
 
 let citiesSelectElement = document.querySelector("#city");
 citiesSelectElement.addEventListener("change", updateCity);
